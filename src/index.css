@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* * {
+  @apply transition-all duration-200
+} */
+
+@layer base {
+  :root {
+    --background: 33.3 100% 96.5%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 22.66 60.85% 53.95%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+    --muted: 0 0% 37.35%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 23.76 33.7% 85.92%;
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 24.6 95% 53.1%;
+    --radius: 0.75rem;
+    --filter-button: 33 100% 91%;
+    /* custom values */
+
+  }
+
+  .dark {
+    --background: 20 20.66% 7.77%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 22.66 60.85% 53.95%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 12 1.85% 68.44%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 23.76 33.7% 85.92%;
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 20.5 90.2% 48.2%;
+    --filter-button: 33 51% 11%;
+    /* custom values */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1 {
+    @apply text-[2.5rem] font-semibold font-noto;
+  }
+
+  h2 {
+    @apply text-3xl font-semibold font-noto;
+  }
+
+  h3 {
+    @apply text-2xl font-bold text-primary;
+  }
+
+  h4 {
+    @apply text-xl font-semibold;
+  }
+
+  button {
+    @apply transition-colors duration-200;
+  }
+
+  .nav-container::-webkit-scrollbar {
+    @apply hidden;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply bg-card;
+    /* background-color: #000; */
+    /* width: 12px; */
+    scrollbar-width: thin;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-muted/10 rounded-sm;
+    /* border-radius: 4px; */
+  }
+}
+
+
+
+
+/* @layer base {
+  :root {
+    --background: 255, 253, 251;
+
+    --border: 212, 212, 212;
+    --card: 34, 35, 37;
+
+    --copy-primary: 255, 248, 241;
+    --copy-secondary: 115, 115, 115;
+
+    --cta: 139, 92, 246;
+    --cta-text: 255, 255, 255;
+    --cta-hover: 231, 136, 18;
+    --cta-hover-text: 25, 25, 25;
+
+    --btn-bg-primary: 180, 105, 12;
+    --btn-text-primary: 255, 255, 255;
+
+    background: rgba(var(--background));
+
+  }
+
+  .dark {
+    --background: 0, 0, 0;
+
+    --border: 38, 38, 38;
+    --card: 23, 23, 23;
+
+    --copy-primary: 235, 219, 204;
+    --copy-secondary: 115, 115, 115;
+
+    --cta: 99, 102, 241;
+    --cta-text: 255, 255, 255;
+    --cta-hover: 231, 136, 18;
+    --cta-hover-text: 25, 25, 25;
+
+    --btn-bg-primary: 180, 105, 12;
+    --btn-text-primary: 255, 255, 255;
+
+    background: rgba(var(--background));
+  }
+} */
