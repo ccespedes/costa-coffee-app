@@ -16,7 +16,7 @@
     --popover-foreground: 20 14.3% 4.1%;
     --primary: 22.66 60.85% 53.95%;
     --primary-foreground: 60 9.1% 97.8%;
-    --secondary: 60 4.8% 95.9%;
+    --secondary: 0 0% 89%;
     --secondary-foreground: 24 9.8% 10%;
     --muted: 0 0% 37.35%;
     --muted-foreground: 25 5.3% 44.7%;
@@ -104,48 +104,6 @@
   }
 }
 
-
-
-
-/* @layer base {
-  :root {
-    --background: 255, 253, 251;
-
-    --border: 212, 212, 212;
-    --card: 34, 35, 37;
-
-    --copy-primary: 255, 248, 241;
-    --copy-secondary: 115, 115, 115;
-
-    --cta: 139, 92, 246;
-    --cta-text: 255, 255, 255;
-    --cta-hover: 231, 136, 18;
-    --cta-hover-text: 25, 25, 25;
-
-    --btn-bg-primary: 180, 105, 12;
-    --btn-text-primary: 255, 255, 255;
-
-    background: rgba(var(--background));
-
-  }
-
-  .dark {
-    --background: 0, 0, 0;
-
-    --border: 38, 38, 38;
-    --card: 23, 23, 23;
-
-    --copy-primary: 235, 219, 204;
-    --copy-secondary: 115, 115, 115;
-
-    --cta: 99, 102, 241;
-    --cta-text: 255, 255, 255;
-    --cta-hover: 231, 136, 18;
-    --cta-hover-text: 25, 25, 25;
-
-    --btn-bg-primary: 180, 105, 12;
-    --btn-text-primary: 255, 255, 255;
-
-    background: rgba(var(--background));
-  }
-} */
+.fa {
+  font-family: 'Helvetica', FontAwesome, sans-serif;
+}

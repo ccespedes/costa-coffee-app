@@ -1,11 +1,30 @@
-import React from "react"
+import costaTextLogo from "../assets/costa-text.svg"
 
-const Sheet = () => {
+const Sheet = ({ sideMenu, sideMenuSlide, siteMenu }) => {
   return (
-    <div className="slider fixed flex top-0 left-0 h-full w-full z-10">
-      <div className="bg-card h-full w-80 p-6">Menu</div>
-      <div className="bg-card/50 h-full w-full"></div>
-    </div>
+    <>
+      <div
+        className={`${
+          sideMenu ? "left-0" : "-left-60"
+        } top-0 fixed flex flex-col gap-3 transition-all duration-200 bg-card h-full w-60 z-20 md:hidden`}
+      >
+        <div className="absolute right-4 top-4">
+          <button onClick={sideMenuSlide}>
+            <i className="fa-solid fa-xmark opacity-50"></i>
+          </button>
+        </div>
+        <div className="flex mx-auto mt-12 mb-8">
+          <img className="h-8" src={costaTextLogo} alt="Costa text logo" />
+        </div>
+        {siteMenu}
+      </div>
+      <div
+        onClick={sideMenuSlide}
+        className={`${
+          sideMenu ? "flex left-0" : "hidden"
+        } fixed top-0 bg-card/80 h-screen w-full z-10 md:hidden`}
+      ></div>
+    </>
   )
 }
 

@@ -2,10 +2,10 @@ import BoxButton from "../components/BoxButton"
 import Card from "../components/Card"
 import CoffeeNav from "../components/CoffeeNav"
 import Container from "../components/Container"
-import { menuArray } from "../data"
+import { drinkMenu } from "../data"
 
 const Home = () => {
-  const menuItems = menuArray.map((item) => (
+  const menuItems = drinkMenu.map((item) => (
     <Card
       key={item.id}
       className="relative border-border bg-card p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
@@ -30,7 +30,7 @@ const Home = () => {
     </Card>
   ))
 
-  const popularPicks = menuArray.map((item) => (
+  const popularPicks = drinkMenu.map((item) => (
     <Card
       key={item.id}
       className="flex border-border bg-accent p-3 rounded-3xl cursor-pointer"
@@ -67,9 +67,9 @@ const Home = () => {
         <div className="flex flex-wrap justify-between items-center pb-4">
           <h1 className="mt-1 leading-10">Find the best coffee for you</h1>
           <input
-            className="bg-card h-12 rounded-2xl px-6 mt-4 text-muted w-full placeholder:text-foreground/20 md:w-auto"
+            className="fa bg-card h-12 rounded-2xl px-4 mt-4 text-muted font-normal text-sm w-full placeholder:text-foreground/35 md:w-auto"
             type="search"
-            placeholder="Find your coffee"
+            placeholder="&#xf002;  Find your coffee"
           />
         </div>
 
@@ -91,19 +91,3 @@ const Home = () => {
 }
 
 export default Home
-
-{
-  /* <div className="custom-scrollbar relative flex gap-4 mb-5 overflow-x-auto -mx-4 px-4 md:grid md:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]">
-{menuItems}
-</div> */
-}
-
-{
-  /* // Attempt to add gradient to sides
-   <div className="relative">
-<div className="absolute bg-black -mr-4 w-60 h-[428px] right-0 z-10"></div>
-<div className="custom-scrollbar flex gap-4 mb-5 overflow-x-auto -mx-4 px-4">
-  {menuItems}
-</div>
-</div> */
-}

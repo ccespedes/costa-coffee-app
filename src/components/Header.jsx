@@ -5,45 +5,35 @@ import { UseTheme } from "../context/ThemeProvider"
 import Sheet from "./Sheet"
 import { useState } from "react"
 import NavButton from "./NavButton"
+import { navMenu } from "../data"
 
 const Header = () => {
   const { theme, setTheme } = UseTheme()
-  const [panel, setPanel] = useState(false)
+  const [sideMenu, setSideMenu] = useState(false)
 
-  const slidePanel = () => {
-    console.log("slide")
-    setPanel(!panel)
+  const sideMenuSlide = () => {
+    setSideMenu(!sideMenu)
   }
+
+  const siteMenu = navMenu.map((name, i) => (
+    <NavButton key={i}>{name}</NavButton>
+  ))
 
   return (
     <div className="py-4">
       <Container>
-        <div
-          className={`${
-            panel ? "left-0" : "-left-60"
-          } fixed top-0 transition-all duration-200 bg-card h-full w-60 p-6 z-10`}
-        >
-          Menu
-        </div>
-        <div
-          onClick={slidePanel}
-          className={`${
-            panel ? "flex left-0" : "hidden"
-          } fixed top-0 bg-card/50 h-screen w-full`}
-        ></div>
+        <Sheet
+          siteMenu={siteMenu}
+          sideMenu={sideMenu}
+          sideMenuSlide={sideMenuSlide}
+        />
 
         <div className="grid grid-cols-3 items-center md:grid-cols-6">
-          {/* <div className="flex items-center justify-between"> */}
           <div className="md:order-2 md:mx-auto md:col-span-4">
-            <button className="md:hidden" onClick={slidePanel}>
+            <button className="md:hidden" onClick={sideMenuSlide}>
               <IconBox faName="fa-bars" />
             </button>
-            <div className="hidden mx-auto md:flex gap-4">
-              <NavButton>Menu</NavButton>
-              <NavButton>Featured</NavButton>
-              <NavButton>Previous</NavButton>
-              <NavButton>Favorites</NavButton>
-            </div>
+            <div className="hidden mx-auto md:flex gap-1">{siteMenu}</div>
           </div>
           <div className="md:col-span-1">
             <img
@@ -70,23 +60,3 @@ const Header = () => {
 }
 
 export default Header
-
-{
-  /* <div
-className={`${
-  panel ? "left-0" : "-left-[1200px]"
-} slider fixed top-0 left-0 h-full w-full z-20`}
->
-<div
-  className={`${
-    panel ? "left-0" : "-left-60"
-  } absolute transition-all duration-200 bg-card h-full w-60 p-6 z-10`}
->
-  Menu
-</div>
-<div
-  onClick={slidePanel}
-  className={`bg-card/50 h-full w-full`}
-></div>
-</div> */
-}

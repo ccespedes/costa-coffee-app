@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import PillButton from "./PillButton"
-
-const drinkNames = [
-  "Capuccino",
-  "Americano",
-  "Latte",
-  "Flat White",
-  "Espresso",
-  "Machiatto",
-]
+import { drinkMenu } from "../data"
 
 const CoffeeNav = () => {
-  const drinksObjects = drinkNames.map((drink, index) => {
+  const drinksObjects = drinkMenu.map((drink) => {
     return {
-      id: index,
-      name: drink,
-      active: index === 0,
+      id: drink.id,
+      name: drink.name,
+      active: drink.id === 0,
     }
   })
 

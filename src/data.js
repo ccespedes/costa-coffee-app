@@ -1,14 +1,15 @@
-import capuccinoImage from "./assets/capuccino.jpg"
+import cappuccinoImage from "./assets/capuccino.jpg"
 import americanoImage from "./assets/americano.jpg"
 import latteImage from "./assets/latte.jpg"
 import espressoImage from "./assets/espresso.jpg"
 import flatWhiteImage from "./assets/flat-white.jpg"
+import macchiatoImage from "./assets/macchiato.jpg"
 
-export const menuArray = [
+export const drinkMenu = [
   {
     id: 0,
-    name: "Capuccino",
-    image: capuccinoImage,
+    name: "Cappuccino",
+    image: cappuccinoImage,
     ingredients: ["steamed milk", "espresso"],
     price: 4.2,
     description:
@@ -50,4 +51,15 @@ export const menuArray = [
     description:
       "A smooth, velvety espresso mixed with creamy, steamed milk, creating a balanced, rich, and satisfying coffee beverage, known as a flat white.",
   },
+  {
+    id: 5,
+    name: "Macchiato",
+    image: macchiatoImage,
+    ingredients: ["espresso", "steamed milk"],
+    price: 4.5,
+    description:
+      'A potent shot of espresso "stained" with creamy milk; bold, robust, and perfectly balanced for a rich, indulgent coffee experience.',
+  },
 ]
+
+export const navMenu = ["Menu", "Featured", "Previous", "Favorites"]
