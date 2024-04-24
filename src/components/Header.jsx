@@ -5,7 +5,8 @@ import { UseTheme } from "../context/ThemeProvider"
 import Sheet from "./Sheet"
 import { useState } from "react"
 import NavButton from "./NavButton"
-import { navMenu } from "../data"
+import { routes } from "../data"
+import { Link } from "react-router-dom"
 
 const Header = () => {
   const { theme, setTheme } = UseTheme()
@@ -15,20 +16,34 @@ const Header = () => {
     setSideMenu(!sideMenu)
   }
 
-  const siteMenu = navMenu.map((name, i) => (
-    <NavButton key={i}>{name}</NavButton>
+  const siteMenu = routes.map((route, i) => (
+    <NavButton path={route.path} sideMenuSlide={sideMenuSlide} key={i}>
+      {route.name}
+    </NavButton>
+  ))
+
+  const leftMenu = routes.map((route, i) => (
+    <NavButton
+      path={route.path}
+      sideMenuSlide={sideMenuSlide}
+      left={true}
+      icon={route.icon}
+      key={i}
+    >
+      {route.name}
+    </NavButton>
   ))
 
   return (
-    <div className="py-4">
+    <header className="mt-4">
       <Container>
         <Sheet
-          siteMenu={siteMenu}
+          leftMenu={leftMenu}
           sideMenu={sideMenu}
           sideMenuSlide={sideMenuSlide}
         />
 
-        <div className="grid grid-cols-3 items-center md:grid-cols-6">
+        <div className="grid grid-cols-3 items-center md:grid-cols-6 py-4">
           <div className="md:order-2 md:mx-auto md:col-span-4">
             <button className="md:hidden" onClick={sideMenuSlide}>
               <IconBox faName="fa-bars" />
@@ -36,11 +51,13 @@ const Header = () => {
             <div className="hidden mx-auto md:flex gap-1">{siteMenu}</div>
           </div>
           <div className="md:col-span-1">
-            <img
-              className="mx-auto w-20 md:mx-0"
-              src={logo}
-              alt="Costa Coffee"
-            />
+            <Link to="/">
+              <img
+                className="mx-auto w-20 md:mx-0"
+                src={logo}
+                alt="Costa Coffee"
+              />
+            </Link>
           </div>
           <div className="flex order-last md:col-span-1">
             <button
@@ -54,8 +71,19 @@ const Header = () => {
             <IconBox faName="fa-user" />
           </div>
         </div>
+
+        <div className="flex flex-wrap justify-between items-center pb-4 md:flex-nowrap">
+          <h1 className="mt-1 leading-10 md:text-nowrap">
+            Find the best coffee for you
+          </h1>
+          <input
+            className="fa bg-card h-12 rounded-2xl px-4 mt-4 text-muted font-normal text-sm w-full placeholder:text-foreground/35 md:ml-4 lg:ml-28"
+            type="search"
+            placeholder="&#xf002;  Find your coffee"
+          />
+        </div>
       </Container>
-    </div>
+    </header>
   )
 }
 

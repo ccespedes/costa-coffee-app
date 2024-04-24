@@ -1,6 +1,6 @@
 import costaTextLogo from "../assets/costa-text.svg"
 
-const Sheet = ({ sideMenu, sideMenuSlide, siteMenu }) => {
+const Sheet = ({ sideMenu, sideMenuSlide, leftMenu }) => {
   return (
     <>
       <div
@@ -16,7 +16,7 @@ const Sheet = ({ sideMenu, sideMenuSlide, siteMenu }) => {
         <div className="flex mx-auto mt-12 mb-8">
           <img className="h-8" src={costaTextLogo} alt="Costa text logo" />
         </div>
-        {siteMenu}
+        {leftMenu}
       </div>
       <div
         onClick={sideMenuSlide}

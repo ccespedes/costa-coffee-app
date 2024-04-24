@@ -5,7 +5,7 @@ import espressoImage from "./assets/espresso.jpg"
 import flatWhiteImage from "./assets/flat-white.jpg"
 import macchiatoImage from "./assets/macchiato.jpg"
 
-export const drinkMenu = [
+export const products = [
   {
     id: 0,
     name: "Cappuccino",
@@ -63,3 +63,26 @@ export const drinkMenu = [
 ]
 
 export const navMenu = ["Menu", "Featured", "Previous", "Favorites"]
+
+export const routes = [
+  {
+    path: "/menu",
+    name: "Menu",
+    icon: "fa-mug-saucer",
+  },
+  {
+    path: "/featured",
+    name: "Featured",
+    icon: "fa-star",
+  },
+  {
+    path: "/previous",
+    name: "Previous",
+    icon: "fa-clock",
+  },
+  {
+    path: "/favorites",
+    name: "Favorites",
+    icon: "fa-heart",
+  },
+]

@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import PillButton from "./PillButton"
-import { drinkMenu } from "../data"
+import { products } from "../data"
 
 const CoffeeNav = () => {
-  const drinksObjects = drinkMenu.map((drink) => {
+  const drinksObjects = products.map((drink) => {
     return {
       id: drink.id,
       name: drink.name,

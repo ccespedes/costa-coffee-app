@@ -2,10 +2,10 @@ import BoxButton from "../components/BoxButton"
 import Card from "../components/Card"
 import CoffeeNav from "../components/CoffeeNav"
 import Container from "../components/Container"
-import { drinkMenu } from "../data"
+import { products } from "../data"
 
 const Home = () => {
-  const menuItems = drinkMenu.map((item) => (
+  const menuItems = products.map((item) => (
     <Card
       key={item.id}
       className="relative border-border bg-card p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
@@ -30,7 +30,7 @@ const Home = () => {
     </Card>
   ))
 
-  const popularPicks = drinkMenu.map((item) => (
+  const popularPicks = products.map((item) => (
     <Card
       key={item.id}
       className="flex border-border bg-accent p-3 rounded-3xl cursor-pointer"
@@ -64,21 +64,9 @@ const Home = () => {
   return (
     <Container>
       <section className="mb-12">
-        <div className="flex flex-wrap justify-between items-center pb-4 md:flex-nowrap">
-          <h1 className="mt-1 leading-10 md:text-nowrap">
-            Find the best coffee for you
-          </h1>
-          <input
-            className="fa bg-card h-12 rounded-2xl px-4 mt-4 text-muted font-normal text-sm w-full placeholder:text-foreground/35 md:ml-4 lg:ml-28"
-            type="search"
-            placeholder="&#xf002;  Find your coffee"
-          />
-        </div>
-
         <div className="nav-container flex overflow-x-auto mb-4 -mx-4 px-4">
           <CoffeeNav />
         </div>
-
         <div className="custom-scrollbar relative flex gap-4 mb-5 overflow-x-auto -mx-4 px-4 md:-mx-0 md:px-0 md:grid md:grid-cols-[repeat(auto-fill,minmax(260px,1fr))]">
           {menuItems}
         </div>
@@ -93,14 +81,3 @@ const Home = () => {
 }
 
 export default Home
-
-{
-  /* <div className="flex flex-wrap justify-between items-center pb-4">
-          <h1 className="mt-1 leading-10">Find the best coffee for you</h1>
-          <input
-            className="fa bg-card h-12 rounded-2xl px-4 mt-4 text-muted font-normal text-sm w-full placeholder:text-foreground/35 md:w-auto"
-            type="search"
-            placeholder="&#xf002;  Find your coffee"
-          />
-        </div> */
-}
