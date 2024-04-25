@@ -9,8 +9,11 @@ const Home = () => {
   const products = getProducts()
 
   const menuItems = products.map((item) => (
-    <Card className="relative border-border bg-card p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0">
-      <Link to={`/products/${item.id}`} key={item.id}>
+    <Card
+      key={item.id}
+      className="relative border-border bg-card p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
+    >
+      <Link to={`/product/${item.id}`}>
         <div>
           <img className="rounded-2xl" src={item.image} alt={item.name} />
         </div>

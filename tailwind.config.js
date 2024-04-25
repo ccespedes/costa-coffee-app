@@ -45,6 +45,7 @@ export default {
     },
     fontFamily: {
       noto: ["Noto Sans", ...fontFamily.sans],
+      nunito: ["Nunito", ...fontFamily.sans],
     },
   },
   plugins: [],
