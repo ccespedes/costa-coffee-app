@@ -10,6 +10,7 @@ import Favorites from "./routes/Favorites.jsx"
 import Menu from "./routes/Menu.jsx"
 import Featured from "./routes/Featured.jsx"
 import Previous from "./routes/Previous.jsx"
+import ProductDetail from "./routes/ProductDetail.jsx"
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "/products", element: <Products /> },
+      { path: "/products/:id", element: <ProductDetail /> },
       { path: "/menu", element: <Menu /> },
       { path: "/featured", element: <Featured /> },
       { path: "/previous", element: <Previous /> },

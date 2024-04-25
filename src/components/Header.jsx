@@ -71,17 +71,6 @@ const Header = () => {
             <IconBox faName="fa-user" />
           </div>
         </div>
-
-        <div className="flex flex-wrap justify-between items-center pb-4 md:flex-nowrap">
-          <h1 className="mt-1 leading-10 md:text-nowrap">
-            Find the best coffee for you
-          </h1>
-          <input
-            className="fa bg-card h-12 rounded-2xl px-4 mt-4 text-muted font-normal text-sm w-full placeholder:text-foreground/35 md:ml-4 lg:ml-28"
-            type="search"
-            placeholder="&#xf002;  Find your coffee"
-          />
-        </div>
       </Container>
     </header>
   )
