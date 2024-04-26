@@ -6,15 +6,28 @@ import Sheet from "./Sheet"
 import { useState } from "react"
 import NavButton from "./NavButton"
 import { routes } from "../data"
-import { Link } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 
 const Header = () => {
   const { theme, setTheme } = UseTheme()
   const [sideMenu, setSideMenu] = useState(false)
 
+  const location = useLocation()
+
   const sideMenuSlide = () => {
     setSideMenu(!sideMenu)
   }
+
+  const menuButton =
+    location.pathname === "/" ? (
+      <button className="md:hidden" onClick={sideMenuSlide}>
+        <IconBox faName="fa-bars" />
+      </button>
+    ) : (
+      <Link className="md:hidden" to={"/"}>
+        <IconBox faName="fa-chevron-left" />
+      </Link>
+    )
 
   const siteMenu = routes.map((route, i) => (
     <NavButton path={route.path} sideMenuSlide={sideMenuSlide} key={i}>
@@ -45,9 +58,11 @@ const Header = () => {
 
         <div className="grid grid-cols-3 items-center md:grid-cols-6 py-4">
           <div className="md:order-2 md:mx-auto md:col-span-4">
-            <button className="md:hidden" onClick={sideMenuSlide}>
+            {/* <button className="md:hidden" onClick={sideMenuSlide}>
               <IconBox faName="fa-bars" />
-            </button>
+            </button> */}
+            {menuButton}
+
             <div className="hidden mx-auto md:flex gap-1">{siteMenu}</div>
           </div>
           <div className="md:col-span-1">

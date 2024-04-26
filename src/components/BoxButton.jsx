@@ -3,8 +3,8 @@ import React from "react"
 const BoxButton = ({ className, children, icon, type }) => {
   const defaultClasses =
     type === "secondary"
-      ? "flex items-center justify-center text-foreground/50 bg-secondary/50 border-[0.08rem] border-card py-[0.3rem]  rounded-[0.7rem] transition-all duration-200 hover:border-[0.08rem] hover:border-primary hover:text-primary sm:px-12"
-      : "flex items-center justify-center bg-primary transition-all duration-200  hover:scale-105"
+      ? "flex items-center justify-center text-foreground/50 bg-secondary/50 border-[0.08rem] border-card py-[0.3rem] rounded-[0.7rem] transition-all duration-200 hover:border-[0.08rem] hover:border-primary hover:text-primary sm:px-12"
+      : "flex items-center justify-center bg-primary transition-all duration-200  hover:scale-110"
 
   return icon ? (
     <>
@@ -18,15 +18,10 @@ const BoxButton = ({ className, children, icon, type }) => {
       </div>
     </>
   ) : (
-    <button className={`${defaultClasses} rounded-2xl w-full ${className}`}>
+    <button className={`${defaultClasses} rounded-2xl ${className}`}>
       {children}
     </button>
   )
 }
 
 export default BoxButton
-
-// const defaultClasses =
-//     type === "secondary"
-//       ? "flex items-center justify-center text-foreground/50 bg-secondary/50 border-[0.08rem] border-card py-[0.3rem] min-w-[5.5rem] rounded-[0.7rem] transition-all duration-200 hover:border-[0.08rem] hover:border-primary hover:text-primary sm:px-12"
-//       : "flex items-center justify-center bg-primary transition-all duration-200  hover:scale-105"

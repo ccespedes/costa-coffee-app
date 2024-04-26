@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import costaTextLogo from "../assets/costa-text.svg"
 
 const Sheet = ({ sideMenu, sideMenuSlide, leftMenu }) => {
@@ -13,8 +14,10 @@ const Sheet = ({ sideMenu, sideMenuSlide, leftMenu }) => {
             <i className="fa-solid fa-xmark opacity-50"></i>
           </button>
         </div>
-        <div className="flex mx-auto mt-12 mb-8">
-          <img className="h-8" src={costaTextLogo} alt="Costa text logo" />
+        <div onClick={sideMenuSlide} className="flex mx-auto mt-12 mb-8">
+          <Link to={"/"}>
+            <img className="h-8" src={costaTextLogo} alt="Costa text logo" />
+          </Link>
         </div>
         {leftMenu}
       </div>

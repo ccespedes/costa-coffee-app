@@ -1,8 +1,9 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import "./index.css"
 import { ThemeProvider } from "./context/ThemeProvider.jsx"
+import { DataProvider } from "./context/StaticDataProvider.jsx"
+import "./index.css"
 import Layout from "./components/Layout.jsx"
 import Home from "./routes/Home.jsx"
 import Products from "./routes/Products.jsx"
@@ -30,6 +31,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider>
-    <RouterProvider router={router} />
+    <DataProvider>
+      <RouterProvider router={router} />
+    </DataProvider>
   </ThemeProvider>
 )

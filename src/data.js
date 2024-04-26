@@ -13,6 +13,7 @@ export const products = [
     phonetic: "[ kap-oo-chee-noh ]",
     ingredients: ["steamed milk", "espresso"],
     price: 4.2,
+    rating: 4.9,
     description:
       "Dark, rich espresso lies in wait under a smoothed and stretched layer of thick milk foam. An alchemy of barista artistry and craft.",
   },
@@ -23,6 +24,7 @@ export const products = [
     phonetic: "[ uh-mer-i-kan-oh ]",
     ingredients: ["espresso", "water"],
     price: 3.5,
+    rating: 4.6,
     description:
       "Espresso shots topped with cold water produce a light layer of crema, then served over ice. The result: a wonderfully rich cup with depth and nuance.",
   },
@@ -33,6 +35,7 @@ export const products = [
     phonetic: "[ lah-tey ]",
     ingredients: ["espresso", "steamed milk"],
     price: 3.8,
+    rating: 4.2,
     description:
       "Our dark, rich espresso balanced with steamed milk and a light layer of foam. A perfect milk-forward warm-up.",
   },
@@ -43,6 +46,7 @@ export const products = [
     phonetic: "[ e-spres-oh ]",
     ingredients: ["espresso"],
     price: 3.2,
+    rating: 4.1,
     description:
       "Our dark, fine espresso is sourced from the Blue Zone area of Costa Rica and roasted with the finest methods from Italy.",
   },
@@ -53,6 +57,7 @@ export const products = [
     phonetic: "[ flat-wahyt ]",
     ingredients: ["espresso", "steamed milk"],
     price: 4.8,
+    rating: 4.6,
     description:
       "A smooth, velvety espresso mixed with creamy, steamed milk, creating a balanced, rich, and satisfying coffee beverage, known as a flat white.",
   },
@@ -63,6 +68,7 @@ export const products = [
     phonetic: "[ mak-yah-toh ]",
     ingredients: ["espresso", "steamed milk"],
     price: 4.5,
+    rating: 4.8,
     description:
       'A potent shot of espresso "stained" with creamy milk; bold, robust, and perfectly balanced for a rich, indulgent coffee experience.',
   },

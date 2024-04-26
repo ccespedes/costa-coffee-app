@@ -4,21 +4,59 @@ import Card from "../components/Card"
 import CoffeeNav from "../components/CoffeeNav"
 import Container from "../components/Container"
 import { getProducts } from "../api"
+import { UseDataContext } from "../context/StaticDataProvider"
+import { useEffect } from "react"
 
 const Home = () => {
   const products = getProducts()
+  const { favorites, setFavorites } = UseDataContext()
+
+  const handleFavorite = (id) => {
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    )
+  }
 
   const menuItems = products.map((item) => (
     <Card
       key={item.id}
-      className="relative border-border bg-card p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
+      // className="relative border-border bg-card p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
+      className="relative border-border bg-gradient-to-tl from-foreground/0 to-foreground/10 p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
     >
       <Link to={`/product/${item.id}`}>
-        <div>
+        <div className="relative">
           <img className="rounded-2xl" src={item.image} alt={item.name} />
+          <div className="absolute top-0 right-0 flex items-center gap-2 px-4 py-1 pt-0 rounded-tr-xl rounded-bl-2xl bg-card/30 backdrop-blur">
+            <div>
+              <i className="fa-solid fa-star text-primary text-xs"></i>
+            </div>
+            <div className="text-xs mt-1">{item.rating}</div>
+          </div>
         </div>
         <div>
-          <h3 className="mb-4 mt-4">{item.name}</h3>
+          <div className="flex items-center justify-between">
+            <div className="relative">
+              <h3 className="mb-4 mt-4">{item.name}</h3>
+              <h3 className="absolute left-0 top-0 blur-md text-primary/30 mb-4">
+                {item.name}
+              </h3>
+            </div>
+
+            <span
+              className="pointer-events-auto"
+              onClick={(e) => {
+                e.stopPropagation()
+                e.preventDefault()
+                handleFavorite(item.id)
+              }}
+            >
+              <i
+                className={`${
+                  favorites.includes(item.id) ? "fa-solid" : "fa-regular"
+                } fa-heart text-xl text-foreground/30 transition-all duration-200 hover:text-foreground hover:scale-110`}
+              ></i>
+            </span>
+          </div>
           <p className="text-sm text-foreground/50 font-extralight mb-5">
             {item.ingredients.map((ing) =>
               item.ingredients.indexOf(ing) === item.ingredients.length - 1
@@ -36,33 +74,32 @@ const Home = () => {
   ))
 
   const popularPicks = products.map((item) => (
-    <Card
-      key={item.id}
-      className="flex border-border bg-accent p-3 rounded-3xl cursor-pointer"
-    >
-      <div>
-        <img
-          className="rounded-2xl max-w-28 mr-4"
-          src={item.image}
-          alt={item.name}
-        />
-      </div>
-      <div className="flex flex-col justify-center">
-        <h3 className="brightness-75">{item.name}</h3>
-        <p className="text-sm text-foreground/50 font-extralight dark:text-accent-foreground">
-          {item.ingredients.map((ing) =>
-            item.ingredients.indexOf(ing) === item.ingredients.length - 1
-              ? ing
-              : `${ing}, `
-          )}
-        </p>
-        <h4 className="dark:text-accent-foreground mb-2">
-          ${item.price.toFixed(2)}
-        </h4>
-      </div>
-      <div className="flex items-center ml-auto">
-        <BoxButton icon="fa-plus fa-solid" className="brightness-75 p-4" />
-      </div>
+    <Card key={item.id} className="border-border bg-accent p-3 rounded-3xl">
+      <Link className="flex" to={`/product/${item.id}`}>
+        <div>
+          <img
+            className="rounded-2xl max-w-28 mr-4"
+            src={item.image}
+            alt={item.name}
+          />
+        </div>
+        <div className="flex flex-col justify-center">
+          <h3 className="brightness-75">{item.name}</h3>
+          <p className="text-sm text-foreground/50 font-extralight dark:text-accent-foreground">
+            {item.ingredients.map((ing) =>
+              item.ingredients.indexOf(ing) === item.ingredients.length - 1
+                ? ing
+                : `${ing}, `
+            )}
+          </p>
+          <h4 className="dark:text-accent-foreground mb-2">
+            ${item.price.toFixed(2)}
+          </h4>
+        </div>
+        <div className="flex items-center ml-auto">
+          <BoxButton icon="fa-plus fa-solid" className="brightness-75 p-4" />
+        </div>
+      </Link>
     </Card>
   ))
 
@@ -96,3 +133,11 @@ const Home = () => {
 }
 
 export default Home
+
+// const handleFavorite = (id) => {
+//   if (!favorites.includes(id)) {
+//     setFavorites((prev) => [...prev, id])
+//   } else {
+//     setFavorites((prev) => prev.filter((item) => item !== id))
+//   }
+// }
