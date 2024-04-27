@@ -25,7 +25,7 @@ const Sheet = ({ sideMenu, sideMenuSlide, leftMenu }) => {
         onClick={sideMenuSlide}
         className={`${
           sideMenu ? "flex left-0" : "hidden"
-        } fixed top-0 bg-card/80 h-screen w-full z-10 md:hidden`}
+        } fixed top-0 bg-black/80 h-screen w-full z-10 md:hidden`}
       ></div>
     </>
   )

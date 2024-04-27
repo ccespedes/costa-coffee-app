@@ -74,6 +74,10 @@ export const products = [
   },
 ]
 
+export const drinkSizes = ["s", "m", "l"]
+
+export const milkOptions = ["Whole", "Oat", "Almond"]
+
 export const routes = [
   {
     path: "/menu",

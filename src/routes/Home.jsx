@@ -5,23 +5,17 @@ import CoffeeNav from "../components/CoffeeNav"
 import Container from "../components/Container"
 import { getProducts } from "../api"
 import { UseDataContext } from "../context/StaticDataProvider"
-import { useEffect } from "react"
 
 const Home = () => {
   const products = getProducts()
-  const { favorites, setFavorites } = UseDataContext()
-
-  const handleFavorite = (id) => {
-    setFavorites((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    )
-  }
+  const { favorites, handleFavorite } = UseDataContext()
 
   const menuItems = products.map((item) => (
     <Card
       key={item.id}
       // className="relative border-border bg-card p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
-      className="relative border-border bg-gradient-to-tl from-foreground/0 to-foreground/10 p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
+      // className="relative border-border bg-gradient-to-tl from-foreground/0 to-foreground/10 p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
+      className="relative border-border bg-gradient-to-tl from-card/10 to-card/80 p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
     >
       <Link to={`/product/${item.id}`}>
         <div className="relative">
@@ -37,7 +31,7 @@ const Home = () => {
           <div className="flex items-center justify-between">
             <div className="relative">
               <h3 className="mb-4 mt-4">{item.name}</h3>
-              <h3 className="absolute left-0 top-0 blur-md text-primary/30 mb-4">
+              <h3 className="absolute left-0 top-4 blur-sm text-primary/30 mb-4">
                 {item.name}
               </h3>
             </div>
@@ -115,7 +109,7 @@ const Home = () => {
           placeholder="&#xf002;  Find your coffee"
         />
       </div>
-      <section className="mb-12">
+      <section className="mb-32">
         <div className="nav-container flex overflow-x-auto mb-4 -mx-4 px-4">
           <CoffeeNav />
         </div>
