@@ -85,9 +85,9 @@ const ProductDetail = () => {
               <div className="flex items-center justify-between px-2">
                 <div className="flex gap-2 items-center">
                   <div>
-                    <i className="fa-solid fa-star text-primary text-xs"></i>
+                    <i className="fa-solid fa-star text-primary text-sm"></i>
                   </div>
-                  <div className="text-xs mt-1">{product.rating}</div>
+                  <div className="text-sm mt-1">{product.rating}</div>
                 </div>
 
                 <button onClick={() => handleFavorite(product.id)}>

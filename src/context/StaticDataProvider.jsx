@@ -4,11 +4,14 @@ const SiteContext = createContext(null)
 
 export const DataProvider = ({ children }) => {
   // const localStorageFavorites = [2, 3]
-  const localStorageShoppingBag = [
-    { id: 1, size: "m", milk: "Whole" },
-    { id: 2, size: "s" },
-  ]
+  // const localStorageShoppingBag = [
+  //   { id: 1, size: "m", milk: "Whole" },
+  //   { id: 2, size: "s" },
+  // ]
   const localStorageFavorites = JSON.parse(localStorage.getItem("favorites"))
+  const localStorageShoppingBag = JSON.parse(
+    localStorage.getItem("shoppingBag")
+  )
   const [favorites, setFavorites] = useState(localStorageFavorites || [])
   const [shoppingBag, setShoppingBag] = useState(localStorageShoppingBag || [])
 
@@ -27,7 +30,8 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites))
-  }, [favorites])
+    localStorage.setItem("shoppingBag", JSON.stringify(shoppingBag))
+  }, [favorites, shoppingBag])
 
   return (
     <SiteContext.Provider
