@@ -3,16 +3,6 @@ import { createContext, useContext, useEffect, useState } from "react"
 const SiteContext = createContext(null)
 
 export const DataProvider = ({ children }) => {
-  // const localStorageFavorites = [
-  //   { id: 1, size: "m", milk: "Whole" },
-  //   { id: 1, size: "s", milk: "Whole" },
-  //   { id: 2, size: "m" },
-  // ]
-  // const localStorageShoppingBag = [
-  //   { id: 1, size: "m", milk: "Whole" },
-  //   { id: 2, size: "s" },
-  // ]
-
   const localStorageFavorites = JSON.parse(localStorage.getItem("favorites"))
   const localStorageShoppingBag = JSON.parse(
     localStorage.getItem("shoppingBag")
@@ -68,6 +58,16 @@ export const DataProvider = ({ children }) => {
 }
 
 export const UseDataContext = () => useContext(SiteContext)
+
+// const localStorageFavorites = [
+//   { id: 1, size: "m", milk: "Whole" },
+//   { id: 1, size: "s", milk: "Whole" },
+//   { id: 2, size: "m" },
+// ]
+// const localStorageShoppingBag = [
+//   { id: 1, size: "m", milk: "Whole" },
+//   { id: 2, size: "s" },
+// ]
 
 // const handleFavorite = (id, size, milk) => {
 //   // console.log(id, size, milk)

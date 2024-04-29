@@ -33,14 +33,12 @@ const ProductDetail = () => {
       : addToShoppingBag(parseInt(id), size)
   }
 
-  const isFavorite = (id, size, milk) => {
-    // console.log(id, size, milk)
-    return favorites.some((favorite) =>
+  const isFavorite = (id, size, milk) =>
+    favorites.some((favorite) =>
       hasMilkOptions
         ? favorite.id === id && favorite.size === size && favorite.milk === milk
         : favorite.id === id && favorite.size === size
     )
-  }
 
   const drinkSizeButtons = drinkSizes.map((drinkSize, i) => (
     <BoxButton
