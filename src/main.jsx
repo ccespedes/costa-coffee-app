@@ -12,6 +12,8 @@ import Menu from "./routes/Menu.jsx"
 import Featured from "./routes/Featured.jsx"
 import Previous from "./routes/Previous.jsx"
 import ProductDetail from "./routes/ProductDetail.jsx"
+import NotFound from "./components/NotFound.jsx"
+import Error from "./components/Error.jsx"
 
 const router = createBrowserRouter([
   {
@@ -19,8 +21,13 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
+      { path: "*", element: <NotFound /> },
       { path: "/products", element: <Products /> },
-      { path: "/product/:id", element: <ProductDetail /> },
+      {
+        path: "/product/:id",
+        element: <ProductDetail />,
+        errorElement: <Error />,
+      },
       { path: "/menu", element: <Menu /> },
       { path: "/featured", element: <Featured /> },
       { path: "/previous", element: <Previous /> },
