@@ -4,7 +4,7 @@ import { UseDataContext } from "../context/StaticDataProvider"
 const Footer = () => {
   const { shoppingBag } = UseDataContext()
   const bagItemCount = shoppingBag.length
-  console.log(shoppingBag, bagItemCount)
+  // console.log(shoppingBag, bagItemCount)
 
   return (
     <footer className="fixed bottom-0 mx-auto py-5 bg-card w-full">

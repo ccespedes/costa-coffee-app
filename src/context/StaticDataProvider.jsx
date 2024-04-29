@@ -4,25 +4,50 @@ const SiteContext = createContext(null)
 
 export const DataProvider = ({ children }) => {
   // const localStorageFavorites = [2, 3]
+  const localStorageFavorites = [
+    { id: 1, size: "m", milk: "Whole" },
+    { id: 1, size: "s", milk: "Whole" },
+    { id: 2, size: "m" },
+  ]
   // const localStorageShoppingBag = [
   //   { id: 1, size: "m", milk: "Whole" },
   //   { id: 2, size: "s" },
   // ]
-  const localStorageFavorites = JSON.parse(localStorage.getItem("favorites"))
+  // const localStorageFavorites = JSON.parse(localStorage.getItem("favorites"))
   const localStorageShoppingBag = JSON.parse(
     localStorage.getItem("shoppingBag")
   )
   const [favorites, setFavorites] = useState(localStorageFavorites || [])
   const [shoppingBag, setShoppingBag] = useState(localStorageShoppingBag || [])
 
-  const handleFavorite = (id) => {
-    setFavorites((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+  const handleFavorite = (id, size, milk) => {
+    const isInFavorites = favorites.some((favorite) =>
+      milk
+        ? favorite.id === id && favorite.size === size && favorite.milk === milk
+        : favorite.id === id && favorite.size === size
     )
+
+    const newFavorite = milk ? { id, size, milk } : { id, size }
+
+    isInFavorites
+      ? setFavorites((prev) =>
+          prev.filter((favorite) =>
+            milk
+              ? !(
+                  favorite.id === id &&
+                  favorite.size === size &&
+                  favorite.milk === milk
+                )
+              : !(favorite.id === id && favorite.size === size)
+          )
+        )
+      : setFavorites((prev) => [...prev, newFavorite])
   }
 
+  // console.log(favorites)
+
   const addToShoppingBag = (id, size, milk) => {
-    console.log("addToShoppingBag", id)
+    // console.log("addToShoppingBag", id)
     milk
       ? setShoppingBag((prev) => [...prev, { id, size, milk }])
       : setShoppingBag((prev) => [...prev, { id, size }])
@@ -43,3 +68,17 @@ export const DataProvider = ({ children }) => {
 }
 
 export const UseDataContext = () => useContext(SiteContext)
+
+// const handleFavorite = (id, size, milk) => {
+//   // console.log(id, size, milk)
+//   milk
+//     ? setFavorites((prev) => [...prev, { id, size, milk }])
+//     : setFavorites((prev) => [...prev, { id, size }])
+// }
+
+// const handleFavorite = (id) => {
+//    only one favorite allowed
+//   setFavorites((prev) =>
+//     prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+//   )
+// }

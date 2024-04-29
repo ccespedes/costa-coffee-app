@@ -33,6 +33,15 @@ const ProductDetail = () => {
       : addToShoppingBag(parseInt(id), size)
   }
 
+  const isFavorite = (id, size, milk) => {
+    // console.log(id, size, milk)
+    return favorites.some((favorite) =>
+      hasMilkOptions
+        ? favorite.id === id && favorite.size === size && favorite.milk === milk
+        : favorite.id === id && favorite.size === size
+    )
+  }
+
   const drinkSizeButtons = drinkSizes.map((drinkSize, i) => (
     <BoxButton
       onClick={() => handleSetSize(drinkSize)}
@@ -90,10 +99,14 @@ const ProductDetail = () => {
                   <div className="text-sm mt-1">{product.rating}</div>
                 </div>
 
-                <button onClick={() => handleFavorite(product.id)}>
+                <button
+                  onClick={() => handleFavorite(product.id, size, milkType)}
+                >
                   <i
                     className={`${
-                      favorites.includes(product.id) ? "fa-solid" : "fa-regular"
+                      isFavorite(product.id, size, milkType)
+                        ? "fa-solid"
+                        : "fa-regular"
                     } fa-heart text-xl text-foreground/80 transition-all duration-200 hover:text-foreground hover:scale-110`}
                   ></i>
                 </button>

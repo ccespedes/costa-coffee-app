@@ -8,64 +8,63 @@ import { UseDataContext } from "../context/StaticDataProvider"
 
 const Home = () => {
   const products = getProducts()
-  const { favorites, handleFavorite } = UseDataContext()
+  const { favorites } = UseDataContext()
 
-  const menuItems = products.map((item) => (
-    <Card
-      key={item.id}
-      // className="relative border-border bg-card p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
-      // className="relative border-border bg-gradient-to-tl from-foreground/0 to-foreground/10 p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
-      className="relative border-border bg-gradient-to-tl from-card/10 to-card/80 p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
-    >
-      <Link to={`/product/${item.id}`}>
-        <div className="relative">
-          <img className="rounded-2xl" src={item.image} alt={item.name} />
-          <div className="absolute top-0 right-0 flex items-center gap-2 px-4 py-1 pt-0 rounded-tr-xl rounded-bl-2xl bg-card/30 backdrop-blur">
-            <div>
-              <i className="fa-solid fa-star text-primary text-xs"></i>
+  const menuItems = products.map((item) => {
+    const isFavorite = favorites
+      .map((favorite) => favorite.id === item.id)
+      .some((item) => item === true)
+
+    return (
+      <Card
+        key={item.id}
+        // className="relative border-border bg-card p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
+        // className="relative border-border bg-gradient-to-tl from-foreground/0 to-foreground/10 p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
+        className="relative border-border bg-gradient-to-tl from-card/10 to-card/80 p-4 rounded-3xl min-w-64 cursor-pointer mb-5 md:mb-0"
+      >
+        <Link to={`/product/${item.id}`}>
+          <div className="relative">
+            <img className="rounded-2xl" src={item.image} alt={item.name} />
+            <div className="absolute top-0 right-0 flex items-center gap-2 px-4 py-1 pt-0 rounded-tr-xl rounded-bl-2xl bg-card/30 backdrop-blur">
+              <div>
+                <i className="fa-solid fa-star text-primary text-xs"></i>
+              </div>
+              <div className="text-xs mt-1">{item.rating}</div>
             </div>
-            <div className="text-xs mt-1">{item.rating}</div>
           </div>
-        </div>
-        <div>
+          <div>
+            <div className="flex items-center justify-between">
+              <div className="relative">
+                <h3 className="mb-4 mt-4">{item.name}</h3>
+                <h3 className="absolute left-0 top-4 blur-sm text-primary/30 mb-4">
+                  {item.name}
+                </h3>
+              </div>
+
+              <div className="pointer-events-none">
+                <i
+                  className={`${
+                    isFavorite ? "fa-solid" : "fa-regular"
+                  } fa-heart text-xl text-foreground/30 transition-all duration-200 hover:text-foreground hover:scale-110`}
+                ></i>
+              </div>
+            </div>
+            <p className="text-sm text-foreground/50 font-extralight mb-5">
+              {item.ingredients.map((ing) =>
+                item.ingredients.indexOf(ing) === item.ingredients.length - 1
+                  ? ing
+                  : `${ing}, `
+              )}
+            </p>
+          </div>
           <div className="flex items-center justify-between">
-            <div className="relative">
-              <h3 className="mb-4 mt-4">{item.name}</h3>
-              <h3 className="absolute left-0 top-4 blur-sm text-primary/30 mb-4">
-                {item.name}
-              </h3>
-            </div>
-
-            <span
-              className="pointer-events-auto"
-              onClick={(e) => {
-                e.stopPropagation()
-                e.preventDefault()
-                handleFavorite(item.id)
-              }}
-            >
-              <i
-                className={`${
-                  favorites.includes(item.id) ? "fa-solid" : "fa-regular"
-                } fa-heart text-xl text-foreground/30 transition-all duration-200 hover:text-foreground hover:scale-110`}
-              ></i>
-            </span>
+            <h4 className="mb-2">${item.price.toFixed(2)}</h4>
+            <BoxButton icon="fa-plus fa-solid" className="p-4" />
           </div>
-          <p className="text-sm text-foreground/50 font-extralight mb-5">
-            {item.ingredients.map((ing) =>
-              item.ingredients.indexOf(ing) === item.ingredients.length - 1
-                ? ing
-                : `${ing}, `
-            )}
-          </p>
-        </div>
-        <div className="flex items-center justify-between">
-          <h4 className="mb-2">${item.price.toFixed(2)}</h4>
-          <BoxButton icon="fa-plus fa-solid" className="p-4" />
-        </div>
-      </Link>
-    </Card>
-  ))
+        </Link>
+      </Card>
+    )
+  })
 
   const popularPicks = products.map((item) => (
     <Card key={item.id} className="border-border bg-accent p-3 rounded-3xl">
