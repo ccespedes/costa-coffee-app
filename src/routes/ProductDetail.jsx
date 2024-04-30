@@ -9,8 +9,8 @@ import { drinkSizes, milkOptions } from "../data"
 
 const ProductDetail = () => {
   const { id } = useParams()
-  const { favorites, handleFavorite, addToShoppingBag } = UseDataContext()
-  const [size, setSize] = useState("m")
+  const { handleFavorite, isFavorite, addToShoppingBag } = UseDataContext()
+  const [size, setSize] = useState("medium")
 
   const products = getProducts()
   const product = products.filter((item) => item.id === parseInt(id))[0]
@@ -27,19 +27,6 @@ const ProductDetail = () => {
     setMilkType(newOption)
   }
 
-  const handleAddToShoppingBag = (id) => {
-    hasMilkOptions
-      ? addToShoppingBag(parseInt(id), size, milkType)
-      : addToShoppingBag(parseInt(id), size)
-  }
-
-  const isFavorite = (id, size, milk) =>
-    favorites.some((favorite) =>
-      hasMilkOptions
-        ? favorite.id === id && favorite.size === size && favorite.milk === milk
-        : favorite.id === id && favorite.size === size
-    )
-
   const drinkSizeButtons = drinkSizes.map((drinkSize, i) => (
     <BoxButton
       onClick={() => handleSetSize(drinkSize)}
@@ -51,7 +38,7 @@ const ProductDetail = () => {
       }`}
       type="secondary"
     >
-      {drinkSize.toUpperCase()}
+      {drinkSize[0].toUpperCase()}
     </BoxButton>
   ))
 
@@ -66,7 +53,7 @@ const ProductDetail = () => {
       }`}
       type="secondary"
     >
-      {option}
+      {option[0].toUpperCase() + option.slice(1)}
     </BoxButton>
   ))
 
@@ -144,7 +131,7 @@ const ProductDetail = () => {
             <div className="flex items-center justify-between mt-auto mb-4">
               <h4>${product.price.toFixed(2)}</h4>
               <BoxButton
-                onClick={() => handleAddToShoppingBag(id)}
+                onClick={() => addToShoppingBag(parseInt(id), size, milkType)}
                 className="py-3 px-8 w-48"
               >
                 Add to Order

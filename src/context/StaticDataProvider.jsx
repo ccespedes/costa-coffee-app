@@ -34,6 +34,15 @@ export const DataProvider = ({ children }) => {
       : setFavorites((prev) => [...prev, newFavorite])
   }
 
+  const isFavorite = (id, size, milk, hasMilkOptions) => {
+    console.log("hasMilkOptions", hasMilkOptions)
+    return favorites.some((favorite) =>
+      milk
+        ? favorite.id === id && favorite.size === size && favorite.milk === milk
+        : favorite.id === id && favorite.size === size
+    )
+  }
+
   // console.log(favorites)
 
   const addToShoppingBag = (id, size, milk) => {
@@ -50,7 +59,13 @@ export const DataProvider = ({ children }) => {
 
   return (
     <SiteContext.Provider
-      value={{ favorites, handleFavorite, shoppingBag, addToShoppingBag }}
+      value={{
+        favorites,
+        handleFavorite,
+        isFavorite,
+        shoppingBag,
+        addToShoppingBag,
+      }}
     >
       {children}
     </SiteContext.Provider>

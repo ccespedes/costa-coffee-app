@@ -74,9 +74,9 @@ export const products = [
   },
 ]
 
-export const drinkSizes = ["s", "m", "l"]
+export const drinkSizes = ["small", "medium", "large"]
 
-export const milkOptions = ["Whole", "Oat", "Almond"]
+export const milkOptions = ["whole", "oat", "almond"]
 
 export const routes = [
   {
