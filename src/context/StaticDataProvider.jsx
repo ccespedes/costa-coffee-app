@@ -54,6 +54,10 @@ export const DataProvider = ({ children }) => {
       : setShoppingBag((prev) => [...prev, { id: nanoid(), pid: id, size }])
   }
 
+  const removeFromShoppingBag = (id) => {
+    setShoppingBag((prev) => prev.filter((item) => item.id !== id))
+  }
+
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites))
     localStorage.setItem("shoppingBag", JSON.stringify(shoppingBag))
@@ -67,6 +71,7 @@ export const DataProvider = ({ children }) => {
         isFavorite,
         shoppingBag,
         addToShoppingBag,
+        removeFromShoppingBag,
       }}
     >
       {children}

@@ -5,13 +5,10 @@ import { getProducts } from "../api"
 import BoxButton from "../components/BoxButton"
 
 const Cart = () => {
-  const { shoppingBag } = UseDataContext()
+  const { shoppingBag, removeFromShoppingBag } = UseDataContext()
   const products = getProducts()
   let subtotal = 0
-  // let tax = .09
-  let total = 0
-  // console.log(products)
-  // console.log(shoppingBag)
+  let tax = 0.09
 
   const cartItems = shoppingBag.map((item) => {
     const { name, image, price } = products.find(
@@ -28,9 +25,11 @@ const Cart = () => {
             {`${item.size} ${item.milk ? `with ${item.milk} milk` : ""}`}
           </p>
         </div>
-        <div className="flex gap-4 ml-auto text-foreground/50 md:gap-8">
+        <div className="flex items-center gap-4 ml-auto text-foreground/50 md:gap-8">
           <i className="fa-solid fa-pen"></i>
-          <i className="fa-solid fa-trash"></i>
+          <button onClick={() => removeFromShoppingBag(item.id)}>
+            <i className="fa-solid fa-trash hover:text-foreground"></i>
+          </button>
           <i className="fa-solid fa-heart"></i>
         </div>
         <p className="ml-4 md:ml-12">${price.toFixed(2)}</p>
@@ -53,11 +52,11 @@ const Cart = () => {
             </div>
             <div className="flex justify-between text-foreground/50 col-span-2">
               <p>Tax</p>
-              <p>${(subtotal * 0.09).toFixed(2)}</p>
+              <p>${(subtotal * tax).toFixed(2)}</p>
             </div>
             <div className="flex justify-between items-center col-span-2">
               <p className="text-xl font-semibold text-foreground/80">Total</p>
-              <p>${(subtotal + subtotal * 0.09).toFixed(2)}</p>
+              <p>${(subtotal + subtotal * tax).toFixed(2)}</p>
             </div>
           </div>
           <BoxButton className="py-3 px-8 w-full sm:w-56 hover:scale-105">
