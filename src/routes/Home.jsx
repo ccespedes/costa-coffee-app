@@ -59,7 +59,10 @@ const Home = () => {
           </div>
           <div className="flex items-center justify-between">
             <h4 className="mb-2">${item.price.toFixed(2)}</h4>
-            <BoxButton icon="fa-plus fa-solid" className="p-4" />
+            <BoxButton
+              icon="fa-plus fa-solid"
+              className="p-4 hover:scale-110"
+            />
           </div>
         </Link>
       </Card>
@@ -90,7 +93,10 @@ const Home = () => {
           </h4>
         </div>
         <div className="flex items-center ml-auto">
-          <BoxButton icon="fa-plus fa-solid" className="brightness-75 p-4" />
+          <BoxButton
+            icon="fa-plus fa-solid"
+            className="brightness-75 p-4 hover:scale-110"
+          />
         </div>
       </Link>
     </Card>
@@ -126,11 +132,3 @@ const Home = () => {
 }
 
 export default Home
-
-// const handleFavorite = (id) => {
-//   if (!favorites.includes(id)) {
-//     setFavorites((prev) => [...prev, id])
-//   } else {
-//     setFavorites((prev) => prev.filter((item) => item !== id))
-//   }
-// }

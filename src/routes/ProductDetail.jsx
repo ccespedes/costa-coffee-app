@@ -132,9 +132,9 @@ const ProductDetail = () => {
               <h4>${product.price.toFixed(2)}</h4>
               <BoxButton
                 onClick={() => addToShoppingBag(parseInt(id), size, milkType)}
-                className="py-3 px-8 w-48"
+                className="py-3 px-8 w-48 hover:scale-105"
               >
-                Add to Order
+                Add to order
               </BoxButton>
             </div>
           </div>

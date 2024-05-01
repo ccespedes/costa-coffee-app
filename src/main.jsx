@@ -14,24 +14,26 @@ import Previous from "./routes/Previous.jsx"
 import ProductDetail from "./routes/ProductDetail.jsx"
 import NotFound from "./components/NotFound.jsx"
 import Error from "./components/Error.jsx"
+import Cart from "./routes/Cart.jsx"
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <Home />, errorElement: <Error /> },
       { path: "*", element: <NotFound /> },
-      { path: "/products", element: <Products /> },
+      { path: "/products", element: <Products />, errorElement: <Error /> },
       {
         path: "/product/:id",
         element: <ProductDetail />,
         errorElement: <Error />,
       },
-      { path: "/menu", element: <Menu /> },
-      { path: "/featured", element: <Featured /> },
-      { path: "/previous", element: <Previous /> },
-      { path: "/favorites", element: <Favorites /> },
+      { path: "/menu", element: <Menu />, errorElement: <Error /> },
+      { path: "/featured", element: <Featured />, errorElement: <Error /> },
+      { path: "/previous", element: <Previous />, errorElement: <Error /> },
+      { path: "/favorites", element: <Favorites />, errorElement: <Error /> },
+      { path: "/cart", element: <Cart />, errorElement: <Error /> },
     ],
   },
 ])
