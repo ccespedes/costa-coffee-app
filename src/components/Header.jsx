@@ -6,7 +6,7 @@ import Sheet from "./Sheet"
 import { useState } from "react"
 import NavButton from "./NavButton"
 import { routes } from "../data"
-import { Link, useLocation, useParams } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 const Header = () => {
   const { theme, setTheme } = UseTheme()
@@ -24,7 +24,7 @@ const Header = () => {
         <IconBox faName="fa-bars" />
       </button>
     ) : (
-      <Link className="md:hidden" to={"/"}>
+      <Link className="md:hidden" to={"."}>
         <IconBox faName="fa-chevron-left" />
       </Link>
     )
@@ -66,7 +66,7 @@ const Header = () => {
             <div className="hidden mx-auto md:flex gap-1">{siteMenu}</div>
           </div>
           <div className="md:col-span-1">
-            <Link to="/">
+            <Link to=".">
               <img
                 className="mx-auto w-20 md:mx-0"
                 src={logo}

@@ -1,7 +1,6 @@
 import React from "react"
 import Container from "../components/Container"
 import Card from "../components/Card"
-import { Link } from "react-router-dom"
 import BoxButton from "../components/BoxButton"
 import { UseDataContext } from "../context/StaticDataProvider"
 import { getProducts } from "../api"
@@ -10,7 +9,7 @@ const Favorites = () => {
   const { favorites, isFavorite, handleFavorite, addToShoppingBag } =
     UseDataContext()
   const products = getProducts()
-  console.log(products)
+  // console.log(products)
 
   const favoriteList =
     favorites &&
@@ -19,7 +18,7 @@ const Favorites = () => {
         (item) => item.id === favorite.id
       )[0]
 
-      console.log(name)
+      // console.log(name)
       return (
         <Card
           key={favorite.id}
@@ -59,7 +58,7 @@ const Favorites = () => {
               </button>
 
               <BoxButton
-                className="absolute right-0 bottom-2 py-2 rounded-xl px-4 max-w-36 min-w-[8rem] sm:px-6 sm:min-w-[9rem]"
+                className="absolute right-0 bottom-2 py-2 rounded-xl px-4 max-w-36 min-w-[8rem] sm:px-6 sm:min-w-[9rem] hover:scale-105"
                 onClick={() =>
                   addToShoppingBag(
                     parseInt(favorite.id),

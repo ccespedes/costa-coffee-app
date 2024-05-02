@@ -38,7 +38,7 @@ const Footer = () => {
           </div> */}
 
           <Link
-            to={"./cart"}
+            to={"cart"}
             className={`relative ml-auto col-span-1 transform transition-transform duration-200 ease-out hover:scale-110 ${
               scaleBag && "scale-125"
             } `}

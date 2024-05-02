@@ -80,22 +80,22 @@ export const milkOptions = ["whole", "oat", "almond"]
 
 export const routes = [
   {
-    path: "/menu",
+    path: "menu",
     name: "Menu",
     icon: "fa-mug-saucer",
   },
   {
-    path: "/featured",
+    path: "featured",
     name: "Featured",
     icon: "fa-star",
   },
   {
-    path: "/previous",
+    path: "previous",
     name: "Previous",
     icon: "fa-clock",
   },
   {
-    path: "/favorites",
+    path: "favorites",
     name: "Favorites",
     icon: "fa-heart",
   },
