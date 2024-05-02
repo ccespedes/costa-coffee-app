@@ -35,7 +35,7 @@ export const DataProvider = ({ children }) => {
       : setFavorites((prev) => [...prev, newFavorite])
   }
 
-  const isFavorite = (id, size, milk, hasMilkOptions) => {
+  const isFavorite = (id, size, milk) => {
     return favorites.some((favorite) =>
       milk
         ? favorite.id === id && favorite.size === size && favorite.milk === milk

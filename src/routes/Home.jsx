@@ -58,7 +58,7 @@ const Home = () => {
             </p>
           </div>
           <div className="flex items-center justify-between">
-            <h4 className="mb-2">${item.price.toFixed(2)}</h4>
+            <h4 className="mb-2">${item.price.small.toFixed(2)}</h4>
             <BoxButton
               icon="fa-plus fa-solid"
               className="p-4 hover:scale-110"
@@ -89,7 +89,7 @@ const Home = () => {
             )}
           </p>
           <h4 className="dark:text-accent-foreground mb-2">
-            ${item.price.toFixed(2)}
+            ${item.price.small.toFixed(2)}
           </h4>
         </div>
         <div className="flex items-center ml-auto">

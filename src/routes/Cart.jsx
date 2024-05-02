@@ -15,7 +15,8 @@ const Cart = () => {
     const { name, image, price } = products.find(
       (product) => product.id === item.pid
     )
-    subtotal += price
+    const productPrice = price[item.size]
+    subtotal += productPrice
 
     return (
       <div key={item.id} className="flex items-center mb-10">
@@ -33,7 +34,7 @@ const Cart = () => {
           </button>
           <i className="fa-solid fa-heart"></i>
         </div>
-        <p className="ml-4 md:ml-12">${price.toFixed(2)}</p>
+        <p className="ml-4 md:ml-12">${productPrice.toFixed(2)}</p>
       </div>
     )
   })

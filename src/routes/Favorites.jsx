@@ -18,6 +18,8 @@ const Favorites = () => {
         (item) => item.id === favorite.id
       )[0]
 
+      const productPrice = price[favorite.size]
+
       // console.log(name)
       return (
         <Card
@@ -39,7 +41,7 @@ const Favorites = () => {
                   favorite.milk ? `with ${favorite.milk} milk` : ""
                 }`}
               </p>
-              <h4 className="mb-2">${price.toFixed(2)}</h4>
+              <h4 className="mb-2">${productPrice.toFixed(2)}</h4>
             </div>
             <div className="relative flex flex-col justify-around items-center ml-auto">
               <button

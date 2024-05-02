@@ -27,6 +27,8 @@ const ProductDetail = () => {
     setMilkType(newOption)
   }
 
+  const productPrice = product.price[size]
+
   const drinkSizeButtons = drinkSizes.map((drinkSize, i) => (
     <BoxButton
       onClick={() => handleSetSize(drinkSize)}
@@ -129,7 +131,7 @@ const ProductDetail = () => {
             </div>
 
             <div className="flex items-center justify-between mt-auto mb-4">
-              <h4>${product.price.toFixed(2)}</h4>
+              <h4>${productPrice.toFixed(2)}</h4>
               <BoxButton
                 onClick={() => addToShoppingBag(parseInt(id), size, milkType)}
                 className="py-3 px-8 w-48 hover:scale-105"
