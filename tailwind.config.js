@@ -47,6 +47,9 @@ export default {
       noto: ["Noto Sans", ...fontFamily.sans],
       nunito: ["Nunito", ...fontFamily.sans],
     },
+    boxShadow: {
+      "3xl": "0px 0px 24px #0000007d",
+    },
   },
   plugins: [],
 }

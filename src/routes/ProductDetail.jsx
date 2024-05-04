@@ -33,7 +33,7 @@ const ProductDetail = () => {
     <BoxButton
       onClick={() => handleSetSize(drinkSize)}
       key={i}
-      className={`w-full md:w-20 ${
+      className={`w-full sm:px-12 md:w-20 ${
         drinkSize === size
           ? "bg-primary text-foreground hover:text-foreground"
           : "bg-secondary/50 text-foreground/50 hover:text-primary"
@@ -48,7 +48,7 @@ const ProductDetail = () => {
     <BoxButton
       onClick={() => handleSetMilkType(option)}
       key={i}
-      className={`w-full md:w-20 ${
+      className={`w-full sm:px-12 md:w-20 ${
         option === milkType
           ? "bg-primary text-foreground hover:text-foreground"
           : "bg-secondary/50 text-foreground/50 hover:text-primary"

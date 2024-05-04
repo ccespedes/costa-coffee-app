@@ -106,7 +106,7 @@ const Home = () => {
     <Container>
       <div className="flex flex-wrap justify-between items-center pb-4 md:flex-nowrap">
         <h1 className="mt-1 leading-10 md:text-nowrap">
-          Find the best coffee for you
+          <span className="block sm:inline">Find the best </span> coffee for you
         </h1>
         <input
           className="fa bg-card h-12 rounded-2xl px-4 mt-4 text-muted font-normal text-sm w-full placeholder:text-foreground/35 md:ml-4 lg:ml-28"

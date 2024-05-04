@@ -13,7 +13,7 @@ const Favorites = () => {
 
   const favoriteList =
     favorites &&
-    favorites.map((favorite) => {
+    favorites.map((favorite, i) => {
       const { name, price, image } = products.filter(
         (item) => item.id === favorite.id
       )[0]
@@ -23,7 +23,7 @@ const Favorites = () => {
       // console.log(name)
       return (
         <Card
-          key={favorite.id}
+          key={i}
           className="relative border-border bg-gradient-to-tl from-foreground/0 to-foreground/10 p-4 rounded-3xl min-w-64 mb-5"
         >
           <div className="flex">
