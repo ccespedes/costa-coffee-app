@@ -64,66 +64,56 @@ const EditItem = ({ id, setEditItem }) => {
 
   return (
     <>
-      <div className="modal fixed right-0 left-0 top-0 bottom-0 m-auto z-20">
-        <div className="flex h-screen">
-          <Card className="card relative border-border bg-card p-6 rounded-3xl max-w-96 m-auto shadow-3xl z-20">
-            {/* box-shadow: 0px 0px 24px #0000007d */}
-            <div>
-              <img
-                className="rounded-2xl mb-4"
-                src={product.image}
-                alt={product.name}
-              />
-            </div>
+      <div>
+        <img
+          className="rounded-2xl mb-4"
+          src={product.image}
+          alt={product.name}
+        />
+      </div>
 
-            <div className="md:flex md:flex-col">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="font-light text-primary">Edit {product.name}</h3>
-                <h4 className="font-light mt-[.2rem]">
-                  ${productPrice.toFixed(2)}
-                </h4>
+      <div className="md:flex md:flex-col">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="font-light text-primary">Edit {product.name}</h3>
+          <h4 className="font-light mt-[.2rem]">${productPrice.toFixed(2)}</h4>
+        </div>
+
+        <div className="mb-10">
+          <p className="text-sm font-light tracking-wide text-foreground/50 mb-2">
+            Size
+          </p>
+          <div className="flex gap-4 justify-between mb-5">
+            {drinkSizeButtons}
+          </div>
+
+          {milk && (
+            <>
+              <p className="text-sm font-light tracking-wide text-foreground/50 mb-2">
+                Milk
+              </p>
+              <div className="flex gap-4 justify-between">
+                {milkOptionButtons}
               </div>
+            </>
+          )}
+        </div>
 
-              <div className="mb-10">
-                <p className="text-sm font-light tracking-wide text-foreground/50 mb-2">
-                  Size
-                </p>
-                <div className="flex gap-4 justify-between mb-5">
-                  {drinkSizeButtons}
-                </div>
-
-                {milk && (
-                  <>
-                    <p className="text-sm font-light tracking-wide text-foreground/50 mb-2">
-                      Milk
-                    </p>
-                    <div className="flex gap-4 justify-between">
-                      {milkOptionButtons}
-                    </div>
-                  </>
-                )}
-              </div>
-
-              <div className="flex gap-8 items-center justify-between mt-auto mb-4">
-                <BoxButton
-                  onClick={() => setEditItem({ show: false })}
-                  className="py-2 px-8 w-48 bg-secondary hover:scale-105"
-                >
-                  Cancel
-                </BoxButton>
-                <BoxButton
-                  // onClick={() => addToShoppingBag(parseInt(id), size, milkType)}
-                  onClick={() => handleEditItem()}
-                  className="py-2 px-8 w-48 hover:scale-105"
-                >
-                  Edit item
-                </BoxButton>
-              </div>
-            </div>
-          </Card>
+        <div className="flex gap-8 items-center justify-between mt-auto mb-4">
+          <BoxButton
+            onClick={() => setEditItem({ show: false })}
+            className="py-2 px-8 w-48 bg-secondary hover:scale-105"
+          >
+            Cancel
+          </BoxButton>
+          <BoxButton
+            // onClick={() => addToShoppingBag(parseInt(id), size, milkType)}
+            onClick={() => handleEditItem()}
+            className="py-2 px-8 w-48 hover:scale-105"
+          >
+            Edit item
+          </BoxButton>
         </div>
       </div>
-      <div className="modal-cover flex left-0 fixed top-0 bg-black/80 dark:bg-secondary/75 h-full w-full z-10"></div>
     </>
   )
 }

@@ -6,6 +6,7 @@ import Card from "../components/Card"
 import Container from "../components/Container"
 import BoxButton from "../components/BoxButton"
 import EditItem from "../components/EditItem"
+import Modal from "../components/Modal"
 
 const Cart = () => {
   const products = getProducts()
@@ -62,13 +63,6 @@ const Cart = () => {
 
   return (
     <>
-      {editItem["show"] && (
-        <EditItem
-          id={editItem["id"]}
-          pid={editItem["pid"]}
-          setEditItem={setEditItem}
-        />
-      )}
       <Container>
         <section className="mb-32">
           <h1 className="mb-4">Shopping cart</h1>
@@ -124,6 +118,18 @@ const Cart = () => {
           )}
         </section>
       </Container>
+      <Modal
+        open={editItem["show"]}
+        onClose={() => setEditItem({ show: false })}
+      >
+        {editItem["show"] && (
+          <EditItem
+            id={editItem["id"]}
+            pid={editItem["pid"]}
+            setEditItem={setEditItem}
+          />
+        )}
+      </Modal>
     </>
   )
 }
