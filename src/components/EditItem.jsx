@@ -8,7 +8,7 @@ import { useState } from "react"
 const EditItem = ({ id, setEditItem }) => {
   //   console.log(id)
   const products = getProducts()
-  const { shoppingBag } = UseDataContext()
+  const { shoppingBag, setShoppingBag } = UseDataContext()
 
   const { pid, size, milk } = shoppingBag.find((item) => item.id === id)
   const [newSize, setNewSize] = useState(size)
@@ -16,7 +16,8 @@ const EditItem = ({ id, setEditItem }) => {
   const product = products.find((product) => product.id === pid)
 
   const [milkType, setMilkType] = useState(milk ? milk : "")
-  const productPrice = product.price[size]
+  const productPrice = product.price[newSize]
+  console.log(productPrice)
 
   const handleSetSize = (newSize) => {
     setNewSize(newSize)
@@ -27,9 +28,17 @@ const EditItem = ({ id, setEditItem }) => {
   }
 
   const handleEditItem = () => {
-    console.log(id)
-    console.log("shopping bag:", id, size, milk)
-    console.log("edited item", id, newSize, milkType)
+    // console.log(id)
+    // console.log("shopping bag:", id, size, milk)
+    // console.log("edited item", id, newSize, milkType)
+    const updatedItem = milkType
+      ? { id, pid, size: newSize, milkType }
+      : { id, pid, size: newSize }
+    console.log("updatedItem ", updatedItem)
+    setShoppingBag((prev) =>
+      prev.map((item) => (item.id === id ? updatedItem : item))
+    )
+    setEditItem({ show: false })
   }
 
   const drinkSizeButtons = drinkSizes.map((drinkSize, i) => (

@@ -72,6 +72,7 @@ export const DataProvider = ({ children }) => {
         shoppingBag,
         addToShoppingBag,
         removeFromShoppingBag,
+        setShoppingBag,
       }}
     >
       {children}
