@@ -1,12 +1,12 @@
 import { useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import { UseDataContext } from "../context/StaticDataProvider"
+import { getProducts } from "../api"
+import { UseToast } from "../context/ToastService"
+import { drinkSizes, milkOptions } from "../data"
 import Card from "../components/Card"
 import Container from "../components/Container"
-import { getProducts } from "../api"
 import BoxButton from "../components/BoxButton"
-import { UseDataContext } from "../context/StaticDataProvider"
-import { drinkSizes, milkOptions } from "../data"
-import { UseToast } from "../context/ToastService"
 
 const ProductDetail = () => {
   const { id } = useParams()
