@@ -18,8 +18,7 @@ export const ToastProvider = ({ children }) => {
         </div>
       </div>
     )
-    console.log("open toast")
-    console.log(timeout)
+    // console.log("open toast")
     setToast(null)
     setShow(false)
     setIsBusy(false)
@@ -29,7 +28,7 @@ export const ToastProvider = ({ children }) => {
     setIsBusy(true)
     setToast(component)
     timer = setTimeout(() => {
-      console.log("isBusy", isBusy)
+      // console.log("isBusy", isBusy)
       if (isBusy) {
         return
       }
@@ -38,7 +37,7 @@ export const ToastProvider = ({ children }) => {
   }
 
   const close = () => {
-    console.log("close toast")
+    // console.log("close toast")
     setShow(false)
     setTimeout(() => {
       setToast(null)
@@ -70,9 +69,7 @@ export const ToastProvider = ({ children }) => {
 
 export const UseToast = () => useContext(ToastContext)
 
-// import { createContext, useContext, useState } from "react"
-
-// const ToastContext = createContext()
+// multiple toast feature that stack
 
 // export const ToastProvider = ({ children }) => {
 //   const [toasts, setToasts] = useState([])
@@ -114,5 +111,3 @@ export const UseToast = () => useContext(ToastContext)
 //     </ToastContext.Provider>
 //   )
 // }
-
-// export const UseToast = () => useContext(ToastContext)

@@ -1,12 +1,12 @@
-import Card from "./Card"
+import { useState } from "react"
 import { getProducts } from "../api"
 import { drinkSizes, milkOptions } from "../data"
 import { UseDataContext } from "../context/StaticDataProvider"
 import BoxButton from "./BoxButton"
-import { useState } from "react"
+import { UseToast } from "../context/ToastService"
 
 const EditItem = ({ id, setEditItem }) => {
-  //   console.log(id)
+  const toast = UseToast()
   const products = getProducts()
   const { shoppingBag, setShoppingBag } = UseDataContext()
 
@@ -17,7 +17,6 @@ const EditItem = ({ id, setEditItem }) => {
 
   const [milkType, setMilkType] = useState(milk ? milk : "")
   const productPrice = product.price[newSize]
-  console.log(productPrice)
 
   const handleSetSize = (newSize) => {
     setNewSize(newSize)
@@ -28,9 +27,6 @@ const EditItem = ({ id, setEditItem }) => {
   }
 
   const handleEditItem = () => {
-    // console.log(id)
-    // console.log("shopping bag:", id, size, milk)
-    // console.log("edited item", id, newSize, milkType)
     const updatedItem = milkType
       ? { id, pid, size: newSize, milkType }
       : { id, pid, size: newSize }
@@ -39,6 +35,7 @@ const EditItem = ({ id, setEditItem }) => {
       prev.map((item) => (item.id === id ? updatedItem : item))
     )
     setEditItem({ show: false })
+    toast.open(product.name, "successfully edited", "fa-circle-check")
   }
 
   const drinkSizeButtons = drinkSizes.map((drinkSize, i) => (
