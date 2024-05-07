@@ -7,8 +7,10 @@ import Container from "../components/Container"
 import BoxButton from "../components/BoxButton"
 import EditItem from "../components/EditItem"
 import Modal from "../components/Modal"
+import { UseToast } from "../context/ToastService"
 
 const Cart = () => {
+  const toast = UseToast()
   const products = getProducts()
   const { shoppingBag, removeFromShoppingBag, isFavorite, handleFavorite } =
     UseDataContext()
@@ -18,10 +20,13 @@ const Cart = () => {
   let tax = 0.09
 
   const handleEdit = (id, pid) => {
-    console.log("Edit", id, pid)
     setEditItem({ show: true, id, pid })
   }
-  // console.log(editItem)
+
+  const handleRemoveFromShoppingBag = (id, name) => {
+    removeFromShoppingBag(id)
+    toast.open(name, "successfully deleted", "fa-circle-check")
+  }
 
   const cartItems = shoppingBag.map((item) => {
     const { name, image, price, id } = products.find(
@@ -44,7 +49,7 @@ const Cart = () => {
             <i className="fa-solid fa-pen p-2 transition-all duration-200 hover:text-foreground hover:scale-110"></i>
           </button>
 
-          <button onClick={() => removeFromShoppingBag(item.id)}>
+          <button onClick={() => handleRemoveFromShoppingBag(item.id, name)}>
             <i className="fa-solid fa-trash p-2 transition-all duration-200 hover:text-foreground hover:scale-110"></i>
           </button>
 
@@ -111,7 +116,6 @@ const Cart = () => {
                     </div>
                   </div>
                 </div>
-
                 {cartItems}
               </Card>
             </>
