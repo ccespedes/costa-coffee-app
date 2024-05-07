@@ -6,11 +6,13 @@ import { getProducts } from "../api"
 import BoxButton from "../components/BoxButton"
 import { UseDataContext } from "../context/StaticDataProvider"
 import { drinkSizes, milkOptions } from "../data"
+import { UseToast } from "../context/ToastService"
 
 const ProductDetail = () => {
   const { id } = useParams()
   const { handleFavorite, isFavorite, addToShoppingBag } = UseDataContext()
   const [size, setSize] = useState("medium")
+  const toast = UseToast()
 
   const products = getProducts()
   const product = products.filter((item) => item.id === parseInt(id))[0]
@@ -25,6 +27,22 @@ const ProductDetail = () => {
 
   const handleSetMilkType = (newOption) => {
     setMilkType(newOption)
+  }
+
+  const handleAddToBag = () => {
+    addToShoppingBag(parseInt(id), size, milkType)
+    toast.open(product.name, "added to bag", "fa-bag-shopping")
+  }
+
+  const doHandleFavorite = () => {
+    handleFavorite(product.id, size, milkType)
+    toast.open(
+      product.name,
+      isFavorite(product.id, size, milkType)
+        ? "removed from favorites"
+        : "added to favorites",
+      "fa-heart"
+    )
   }
 
   const productPrice = product.price[size]
@@ -59,8 +77,6 @@ const ProductDetail = () => {
     </BoxButton>
   ))
 
-  // console.log(size, drinkSizes[0])
-
   return (
     <Container>
       <section className="mb-32">
@@ -86,9 +102,7 @@ const ProductDetail = () => {
                   <div className="text-sm mt-1">{product.rating}</div>
                 </div>
 
-                <button
-                  onClick={() => handleFavorite(product.id, size, milkType)}
-                >
+                <button onClick={doHandleFavorite}>
                   <i
                     className={`${
                       isFavorite(product.id, size, milkType)
@@ -133,7 +147,8 @@ const ProductDetail = () => {
             <div className="flex items-center justify-between mt-auto mb-4">
               <h4>${productPrice.toFixed(2)}</h4>
               <BoxButton
-                onClick={() => addToShoppingBag(parseInt(id), size, milkType)}
+                // onClick={() => addToShoppingBag(parseInt(id), size, milkType)}
+                onClick={handleAddToBag}
                 className="py-3 px-8 w-48 hover:scale-105"
               >
                 Add to order

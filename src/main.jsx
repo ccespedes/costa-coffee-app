@@ -15,6 +15,7 @@ import ProductDetail from "./routes/ProductDetail.jsx"
 import NotFound from "./components/NotFound.jsx"
 import Error from "./components/Error.jsx"
 import Cart from "./routes/Cart.jsx"
+import { ToastProvider } from "./context/ToastService.jsx"
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider>
     <DataProvider>
-      <RouterProvider router={router} />
+      <ToastProvider>
+        <RouterProvider router={router} />
+      </ToastProvider>
     </DataProvider>
   </ThemeProvider>
 )

@@ -24,7 +24,7 @@ const Favorites = () => {
       return (
         <Card
           key={i}
-          className="relative border-border bg-gradient-to-tl from-foreground/0 to-foreground/10 p-4 rounded-3xl min-w-64 mb-5"
+          className="relative border-border bg-gradient-to-tl from-foreground/10 to-foreground/20 p-4 rounded-3xl min-w-64 mb-5"
         >
           <div className="flex">
             <div>
