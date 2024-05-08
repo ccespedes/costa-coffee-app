@@ -1,4 +1,4 @@
-import cappuccinoImage from "./assets/capuccino.jpg"
+import cappuccinoImage from "./assets/cappuccino.jpg"
 import americanoImage from "./assets/americano.jpg"
 import latteImage from "./assets/latte.jpg"
 import espressoImage from "./assets/espresso.jpg"
