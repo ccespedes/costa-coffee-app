@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { UseDataContext } from "../context/StaticDataProvider"
 import { getProducts } from "../api"
@@ -13,6 +13,7 @@ const ProductDetail = () => {
   const { handleFavorite, isFavorite, addToShoppingBag } = UseDataContext()
   const [size, setSize] = useState("medium")
   const toast = UseToast()
+  const [imageLoaded, setImageLoaded] = useState(false)
 
   const products = getProducts()
   const product = products.filter((item) => item.id === parseInt(id))[0]
@@ -77,6 +78,13 @@ const ProductDetail = () => {
     </BoxButton>
   ))
 
+  const formattedName = product.name
+    .split(" ")
+    .map((word) => word.toLowerCase())
+    .join("-")
+  const thumbUrl = `/src/assets/${formattedName}-small.jpg`
+  console.log(formattedName)
+
   return (
     <Container>
       <section className="mb-32">
@@ -88,11 +96,27 @@ const ProductDetail = () => {
         </p>
         <Card className="relative border-border bg-card p-6 rounded-3xl min-w-64 mb-5 md:flex">
           <div className="relative md:mr-5 md:max-w-90">
-            <img
-              className="rounded-2xl mb-4 md:mb-0"
-              src={product.image}
-              alt={product.name}
-            />
+            <div
+              className="bg-[image:var(--image-url)] bg-no-repeat bg-cover bg-center rounded-2xl"
+              style={{
+                "--image-url": `url(${thumbUrl})`,
+              }}
+            >
+              <img
+                loading="lazy"
+                className={`object-center object-cover aspect-square rounded-2xl transition-all duration-1000 ease-in-in mb-4 md:mb-0 ${
+                  imageLoaded ? "opacity-100" : "opacity-0"
+                }`}
+                src={product.image}
+                alt={product.name}
+                onLoad={() => setImageLoaded(true)}
+              />
+            </div>
+            <div
+              className={`absolute h-full px-4 py-5 pt-4 left-0 right-0 bottom-0 rounded-2xl bg-card/50 backdrop-blur-3xl transition-transform duration-1000 ease-in-in ${
+                imageLoaded ? "opacity-0" : "opacity-100"
+              }`}
+            ></div>
             <div className="absolute px-4 py-5 pt-4 left-0 right-0 bottom-0 rounded-2xl bg-card/50 backdrop-blur-sm">
               <div className="flex items-center justify-between px-2">
                 <div className="flex gap-2 items-center">
