@@ -83,7 +83,6 @@ const ProductDetail = () => {
     .map((word) => word.toLowerCase())
     .join("-")
   const thumbUrl = `/src/assets/${formattedName}-small.jpg`
-  console.log(formattedName)
 
   return (
     <Container>
@@ -97,14 +96,14 @@ const ProductDetail = () => {
         <Card className="relative border-border bg-card p-6 rounded-3xl min-w-64 mb-5 md:flex">
           <div className="relative md:mr-5 md:max-w-90">
             <div
-              className="bg-[image:var(--image-url)] bg-no-repeat bg-cover bg-center rounded-2xl"
+              className="bg-[image:var(--image-url)] aspect-square bg-no-repeat bg-cover bg-center rounded-2xl"
               style={{
                 "--image-url": `url(${thumbUrl})`,
               }}
             >
               <img
                 loading="lazy"
-                className={`object-center object-cover aspect-square rounded-2xl transition-all duration-1000 ease-in-in mb-4 md:mb-0 ${
+                className={`object-center object-cover aspect-square rounded-2xl transition-all duration-1000 ease-in ${
                   imageLoaded ? "opacity-100" : "opacity-0"
                 }`}
                 src={product.image}
@@ -113,7 +112,7 @@ const ProductDetail = () => {
               />
             </div>
             <div
-              className={`absolute h-full px-4 py-5 pt-4 left-0 right-0 bottom-0 rounded-2xl bg-card/50 backdrop-blur-3xl transition-transform duration-1000 ease-in-in ${
+              className={`absolute h-full px-4 py-5 pt-4 left-0 right-0 bottom-0 rounded-2xl bg-card/50 backdrop-blur-3xl transition-transform duration-1000 ease-in ${
                 imageLoaded ? "opacity-0" : "opacity-100"
               }`}
             ></div>
@@ -140,7 +139,7 @@ const ProductDetail = () => {
           </div>
 
           <div className="md:flex md:flex-col">
-            <h1 className="mb-2">{product.name}</h1>
+            <h1 className="mt-4 mb-2">{product.name}</h1>
             <p className="text-sm text-foreground/50 font-extralight mb-4">
               {product.phonetic}
             </p>

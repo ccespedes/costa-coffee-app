@@ -5,15 +5,25 @@ import CoffeeNav from "../components/CoffeeNav"
 import Container from "../components/Container"
 import { getProducts } from "../api"
 import { UseDataContext } from "../context/StaticDataProvider"
+import { useState } from "react"
 
 const Home = () => {
   const products = getProducts()
   const { favorites } = UseDataContext()
+  const [imagesLoaded, setImagesLoaded] = useState([])
 
-  const menuItems = products.map((item) => {
+  const menuItems = products.map((item, i) => {
     const isFavorite = favorites
       .map((favorite) => favorite.id === item.id)
       .some((item) => item === true)
+
+    console.log(imagesLoaded)
+
+    const formattedName = item.name
+      .split(" ")
+      .map((word) => word.toLowerCase())
+      .join("-")
+    const thumbUrl = `/src/assets/${formattedName}-small.jpg`
 
     return (
       <Card
@@ -24,7 +34,30 @@ const Home = () => {
       >
         <Link to={`/product/${item.id}`}>
           <div className="relative">
-            <img className="rounded-2xl" src={item.image} alt={item.name} />
+            <div
+              className="bg-[image:var(--image-url)] bg-no-repeat bg-cover bg-center rounded-2xl"
+              style={{
+                "--image-url": `url(${thumbUrl})`,
+              }}
+            >
+              <img
+                loading="lazy"
+                className={`object-center object-cover aspect-square rounded-2xl transition-all duration-1000 ease-in mb-4 md:mb-0 ${
+                  imagesLoaded[i] ? "opacity-100" : "opacity-0"
+                }`}
+                src={item.image}
+                alt={item.name}
+                onLoad={() =>
+                  setImagesLoaded((prev) => [...prev, { [i]: true }])
+                }
+              />
+            </div>
+            <div
+              className={`absolute aspect-square left-0 right-0 bottom-0 rounded-2xl transition-all duration-1000 ease-in backdrop-blur-[25px] ${
+                imagesLoaded[i] && "opacity-0"
+              }`}
+            ></div>
+
             <div className="absolute top-0 right-0 flex items-center gap-2 px-4 py-1 pt-0 rounded-tr-xl rounded-bl-2xl bg-card/30 backdrop-blur">
               <div>
                 <i className="fa-solid fa-star text-primary text-xs"></i>
@@ -69,38 +102,65 @@ const Home = () => {
     )
   })
 
-  const popularPicks = products.map((item) => (
-    <Card key={item.id} className="border-border bg-accent p-3 rounded-3xl">
-      <Link className="flex" to={`/product/${item.id}`}>
-        <div>
-          <img
-            className="rounded-2xl max-w-28 mr-4"
-            src={item.image}
-            alt={item.name}
-          />
-        </div>
-        <div className="flex flex-col justify-center">
-          <h3 className="brightness-75">{item.name}</h3>
-          <p className="text-sm text-foreground/50 font-extralight dark:text-accent-foreground">
-            {item.ingredients.map((ing) =>
-              item.ingredients.indexOf(ing) === item.ingredients.length - 1
-                ? ing
-                : `${ing}, `
-            )}
-          </p>
-          <h4 className="dark:text-accent-foreground mb-2">
-            ${item.price.small.toFixed(2)}
-          </h4>
-        </div>
-        <div className="flex items-center ml-auto">
-          <BoxButton
-            icon="fa-plus fa-solid"
-            className="brightness-75 p-4 hover:scale-110"
-          />
-        </div>
-      </Link>
-    </Card>
-  ))
+  const popularPicks = products.map((item, i) => {
+    const formattedName = item.name
+      .split(" ")
+      .map((word) => word.toLowerCase())
+      .join("-")
+    const thumbUrl = `/src/assets/${formattedName}-small.jpg`
+
+    return (
+      <Card key={item.id} className="border-border bg-accent p-3 rounded-3xl">
+        <Link className="flex" to={`/product/${item.id}`}>
+          <div className="relative">
+            <div
+              className="bg-[image:var(--image-url)] bg-no-repeat bg-cover bg-center aspect-square rounded-2xl max-w-28 mr-4"
+              style={{
+                "--image-url": `url(${thumbUrl})`,
+              }}
+            >
+              <img
+                loading="lazy"
+                className={`object-center object-cover aspect-square rounded-2xl transition-all duration-1000 ease-in max-w-28 mr-4 ${
+                  imagesLoaded[i] ? "opacity-100" : "opacity-0"
+                }`}
+                src={item.image}
+                alt={item.name}
+                onLoad={() =>
+                  setImagesLoaded((prev) => [...prev, { [i]: true }])
+                }
+              />
+            </div>
+            <div
+              className={`absolute h-full left-0 right-0 bottom-0 rounded-2xl max-w-28 mr-4 transition-all duration-1000 ease-in backdrop-blur-[25px] ${
+                imagesLoaded[i] && "opacity-0"
+              }`}
+            ></div>
+          </div>
+
+          <div className="flex flex-col justify-center">
+            <h3 className="brightness-75">{item.name}</h3>
+            <p className="text-sm text-foreground/50 font-extralight dark:text-accent-foreground">
+              {item.ingredients.map((ing) =>
+                item.ingredients.indexOf(ing) === item.ingredients.length - 1
+                  ? ing
+                  : `${ing}, `
+              )}
+            </p>
+            <h4 className="dark:text-accent-foreground mb-2">
+              ${item.price.small.toFixed(2)}
+            </h4>
+          </div>
+          <div className="flex items-center ml-auto">
+            <BoxButton
+              icon="fa-plus fa-solid"
+              className="brightness-75 p-4 hover:scale-110"
+            />
+          </div>
+        </Link>
+      </Card>
+    )
+  })
 
   return (
     <Container>
