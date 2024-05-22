@@ -17,7 +17,7 @@ const Home = () => {
       .map((favorite) => favorite.id === item.id)
       .some((item) => item === true)
 
-    console.log(imagesLoaded)
+    // console.log(imagesLoaded)
 
     const formattedName = item.name
       .split(" ")

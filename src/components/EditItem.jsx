@@ -28,7 +28,7 @@ const EditItem = ({ id, setEditItem }) => {
 
   const handleEditItem = () => {
     const updatedItem = milkType
-      ? { id, pid, size: newSize, milkType }
+      ? { id, pid, size: newSize, milk: milkType }
       : { id, pid, size: newSize }
     console.log("updatedItem ", updatedItem)
     setShoppingBag((prev) =>
